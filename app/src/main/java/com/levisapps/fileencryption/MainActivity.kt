@@ -1,7 +1,6 @@
 package com.levisapps.fileencryption
 
 import android.Manifest
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
@@ -51,6 +50,7 @@ class MainActivity : AppCompatActivity() {
         cancel.setOnClickListener { closeNewFileUI() }
     }
 
+    //Checking for permissions and prompting in case of a denied permission
     private fun checkPermissions() {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R) {
             if (ContextCompat.checkSelfPermission(
@@ -70,7 +70,7 @@ class MainActivity : AppCompatActivity() {
                     ), 101
                 )
             }
-        } else {
+        } else { //MANAGE_EXTERNAL_STORAGE permission required for Android 11
             if (ContextCompat.checkSelfPermission(
                     applicationContext,
                     Manifest.permission.MANAGE_EXTERNAL_STORAGE
@@ -85,7 +85,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    @SuppressLint("InflateParams")
+    //Creates a text file which will later be used for writing encrypted text to it
     private fun createEncryptedFile() {
         makeDir()
         var counter = 1
@@ -112,6 +112,7 @@ class MainActivity : AppCompatActivity() {
         Toast.makeText(this, "Encrypted file was saved to $path", Toast.LENGTH_LONG).show()
     }
 
+    //Writing to an encrypted text file using AES with jetpack security
     private fun writeToEncryptedFile(file: File, inp: String) {
         val encryptedFile = EncryptedFile.Builder(
             file,
@@ -128,6 +129,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    //Reading from an encrypted text file using AES with jetpack security
     private fun readFromEncryptedFile(filePath: String): String {
         val encryptedFile = EncryptedFile.Builder(
             File(filePath),
@@ -147,6 +149,8 @@ class MainActivity : AppCompatActivity() {
         return byteArrayOutputStream.toString()
     }
 
+    //Creates a folder in the external storage
+    //Requires MANAGE_EXTERNAL_STORAGE permission on Android 11
     private fun makeDir() {
         val f = File(Environment.getExternalStorageDirectory(), "File Encryption")
         if (!f.exists()) {
@@ -159,6 +163,7 @@ class MainActivity : AppCompatActivity() {
         newFileLayout.visibility = VISIBLE
     }
 
+    //Opens a file chooser for picking an encrypted text file for decryption
     fun pickFile(view: View) {
         closeNewFileUI()
         MaterialFilePicker()
@@ -185,11 +190,14 @@ class MainActivity : AppCompatActivity() {
         if (resultCode != RESULT_CANCELED && resultCode == RESULT_OK) {
             val sharedPreferences = getSharedPreferences("sharedprefs", MODE_PRIVATE)
             when (requestCode) {
+                //An encrypted text file has been picked and is ready for decryption
                 FILE_PICKER_REQUEST_CODE -> {
                     filepath = data!!.getStringExtra(FilePickerActivity.RESULT_FILE_PATH)!!
                     bioID()
                 }
+                //A file has been picked and is ready for encryption
                 FILE_TO_ENC_PICKER_REQUEST_CODE -> {
+                    //Prompting for a password
                     val alertDialog = AlertDialog.Builder(this)
                     alertDialog.setTitle("Enter Password")
                     val input = EditText(this)
@@ -201,6 +209,7 @@ class MainActivity : AppCompatActivity() {
                     alertDialog.setView(input)
 
                     alertDialog.setPositiveButton("encrypt") { _, _ ->
+                        //Encrypting the file
                         val password = input.text.toString()
 
                         if (password == "") {
@@ -237,7 +246,9 @@ class MainActivity : AppCompatActivity() {
                     }
                     alertDialog.show()
                 }
+                //An encrypted file has been picked and is ready for decryption
                 ENC_FILE_PICKER_REQUEST_CODE -> {
+                    //Prompting for a password
                     val alertDialog = AlertDialog.Builder(this)
                     alertDialog.setTitle("Enter Password")
                     val input = EditText(this)
@@ -249,6 +260,7 @@ class MainActivity : AppCompatActivity() {
                     alertDialog.setView(input)
 
                     alertDialog.setPositiveButton("decrypt") { _, _ ->
+                        //Decrypting the file
                         val password = input.text.toString()
 
                         if (password == "") {
@@ -299,6 +311,8 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    //Biometric authentication for decrypting files
+    //Will prompt only if available
     private fun bioID() {
         val executor = ContextCompat.getMainExecutor(this)
         val biometricPrompt = BiometricPrompt(this, executor,
@@ -362,12 +376,13 @@ class MainActivity : AppCompatActivity() {
         return super.onCreateOptionsMenu(menu)
     }
 
+    //Shows a dialog with information
     private fun infoDialog() {
         AlertDialog.Builder(this@MainActivity)
             .setTitle("Info")
             .setMessage(
-                "This app creates encrypted text files in which you can store passwords or other sensitive information.\n\n"
-                        + "These files are encrypted with a unique, randomly generated AES 256-bit key that is used only locally on your device and the encrypted files can only be read using this app and only on this device.\n\n"
+                "This app can encrypt any file with a password based encryption or create encrypted text files in which you can store passwords or other sensitive information.\n\n"
+                        + "The text files are encrypted with a unique, randomly generated AES 256-bit key that is used only locally on your device and the encrypted files can only be read using this app and only on this device.\n\n"
                         + "For any questions or suggestions: levisappss@gmail.com"
             )
             .setPositiveButton("ok") { _, _ ->
@@ -375,7 +390,8 @@ class MainActivity : AppCompatActivity() {
             .show()
     }
 
-    fun pickImage(view: View) {
+    //Opens a file chooser for picking a file for encryption
+    fun pickFileToEnc(view: View) {
         closeNewFileUI()
         MaterialFilePicker()
             .withActivity(this)
@@ -394,7 +410,8 @@ class MainActivity : AppCompatActivity() {
             .start()
     }
 
-    fun pickEncImage(view: View) {
+    //Opens a file chooser for picking an encrypted file for decryption
+    fun pickEncFile(view: View) {
         closeNewFileUI()
         MaterialFilePicker()
             .withActivity(this)
@@ -413,6 +430,8 @@ class MainActivity : AppCompatActivity() {
             .start()
     }
 
+    //Returns the extensions of files
+    //Example: txt for text
     private fun getFileExtension(fullName: String?): String? {
         checkNotNull(fullName)
         val fileName = File(fullName).name

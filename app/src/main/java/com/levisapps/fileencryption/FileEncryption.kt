@@ -12,7 +12,7 @@ import javax.crypto.spec.PBEKeySpec
 import javax.crypto.spec.PBEParameterSpec
 
 class FileEncryption {
-    //Arbitrarily selected 8-byte salt sequence:
+    //Arbitrarily selecting an 8 byte salt
     private val salt = byteArrayOf(
         0x43.toByte(), 0x76.toByte(), 0x95.toByte(), 0xc7.toByte(),
         0x5b.toByte(), 0xd7.toByte(), 0x45.toByte(), 0x17.toByte()
@@ -20,18 +20,17 @@ class FileEncryption {
 
     @Throws(GeneralSecurityException::class)
     private fun makeCipher(pass: String, decryptMode: Boolean): Cipher? {
-        //Use a KeyFactory to derive the corresponding key from the passphrase:
+        //Generating key from password
         val keySpec = PBEKeySpec(pass.toCharArray())
         val keyFactory: SecretKeyFactory = SecretKeyFactory.getInstance("PBEWithMD5AndDES")
         val key: SecretKey = keyFactory.generateSecret(keySpec)
 
-        //Create parameters from the salt and an arbitrary number of iterations:
+        //Creating parameters from the salt and an arbitrary number of iterations
         val pbeParamSpec = PBEParameterSpec(salt, 42)
 
-        //Set up the cipher:
+        //setting up the cipher
         val cipher: Cipher = Cipher.getInstance("PBEWithMD5AndDES")
 
-        //Set the cipher mode to decryption or encryption:
         if (decryptMode) {
             cipher.init(Cipher.ENCRYPT_MODE, key, pbeParamSpec)
         } else {
@@ -46,10 +45,9 @@ class FileEncryption {
         val decData: ByteArray
         val encData: ByteArray
         val inFile = File(fileName)
-        //Generate cipher with the password
+        //Generates the cipher with the password
         val cipher: Cipher = makeCipher(password!!, true)!!
 
-        //Read in the file:
         val inStream = FileInputStream(inFile)
         val blockSize = 8
         //Get amount of padded bytes
