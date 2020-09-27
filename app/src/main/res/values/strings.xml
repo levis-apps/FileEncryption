@@ -1,14 +1,8 @@
 <resources>
     <string name="app_name">FileEncryption</string>
-    <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
-
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="info">info</string>
     <string name="create_an_encrypted_text_file">Create an encrypted text file</string>
     <string name="read_from_an_encrypted_text_file">Read from an encrypted text file:</string>
@@ -19,9 +13,9 @@
     <string name="cancel">Cancel</string>
     <string name="new_file">New File</string>
     <string name="pick_a_file">Pick A File</string>
-    <string name="enter_new_password">Enter new password</string>
-    <string name="use_biometrics">Use biometrics</string>
-    <string name="export_key">Export key</string>
-    <string name="pick_image">Pick Image</string>
-    <string name="pick_encrypted_image">Pick Encrypted Image</string>
+    <string name="pick_file">Pick File</string>
+    <string name="pick_encrypted_file">Pick Encrypted File</string>
+    <string name="decrypt_a_file">Decrypt a file</string>
+    <string name="encrypt_a_file">Encrypt a file</string>
+    <string name="enter_password">Enter password</string>
 </resources>

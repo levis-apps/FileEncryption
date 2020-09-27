@@ -41,13 +41,13 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:text="Encrypt an image"
+            android:text="@string/encrypt_a_file"
             android:textColor="#ffffff"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/toolbar"
-            tools:visibility="gone" />
+            tools:visibility="visible" />
 
         <TextView
             android:id="@+id/textView5"
@@ -55,13 +55,13 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:text="Decrypt an image"
+            android:text="@string/decrypt_a_file"
             android:textColor="#ffffff"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider3"
-            tools:visibility="gone" />
+            tools:visibility="visible" />
 
         <TextView
             android:id="@+id/textView4"
@@ -95,7 +95,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/pickencimage"
-            tools:visibility="gone" />
+            tools:visibility="visible" />
 
         <View
             android:id="@+id/divider3"
@@ -105,8 +105,8 @@
             android:background="@color/colorAccent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/pickimage"
-            tools:visibility="gone" />
+            app:layout_constraintTop_toBottomOf="@+id/pickfile"
+            tools:visibility="visible" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/newFileLayout"
@@ -238,7 +238,7 @@
             app:layout_constraintTop_toBottomOf="@+id/pick" />
 
         <Button
-            android:id="@+id/pickimage"
+            android:id="@+id/pickfile"
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -246,12 +246,12 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:onClick="pickImage"
-            android:text="@string/pick_image"
+            android:text="@string/pick_file"
             android:textColor="@color/colorAccent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView"
-            tools:visibility="gone" />
+            tools:visibility="visible" />
 
         <Button
             android:id="@+id/pickencimage"
@@ -262,12 +262,12 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:onClick="pickEncImage"
-            android:text="@string/pick_encrypted_image"
+            android:text="@string/pick_encrypted_file"
             android:textColor="@color/colorAccent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView5"
-            tools:visibility="gone" />
+            tools:visibility="visible" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>
