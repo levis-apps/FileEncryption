@@ -5,6 +5,8 @@
 
 > File Encryption Android
 
+![alt tag](https://github.com/levis-apps/FileEncryption/blob/master/Screenshot_20200928-143718.png)
+
 ---
 ## Installation
 
