@@ -8,12 +8,12 @@
 ---
 ## Installation
 
-- You can install this application by downloading the latest apk file from the releases!
+- You can install this application by downloading the latest apk file from the [releases](https://github.com/levis-apps/FileEncryption/releases)!
 ---
 
 ## Support
 
-- [Goole Play](https://play.google.com/store/apps/developer?id=levisapps&hl=en)
+[Goole Play](https://play.google.com/store/apps/developer?id=levisapps&hl=en)
 
 ---
 
