@@ -5,7 +5,7 @@
     <string name="previous">Previous</string>
     <string name="info">info</string>
     <string name="create_an_encrypted_text_file">Create an encrypted text file</string>
-    <string name="read_from_an_encrypted_text_file">Read from an encrypted text file:</string>
+    <string name="read_from_an_encrypted_text_file">Read from an encrypted text file</string>
     <string name="enter_the_file_s_name_and_its_content">Enter the file\'s name and its content:</string>
     <string name="name">Name</string>
     <string name="content">Content</string>
@@ -18,4 +18,8 @@
     <string name="decrypt_a_file">Decrypt a file</string>
     <string name="encrypt_a_file">Encrypt a file</string>
     <string name="enter_password">Enter password</string>
+    <string name="info_dialog">This app can encrypt any file with a password based encryption or create encrypted text files in which you can store passwords or other sensitive information.\n\nThe text files are encrypted with a unique, randomly generated AES 256-bit key that is used only locally on your device and the encrypted files can only be read using this app and only on this device.\n\nFor any questions or suggestions: levisappss@gmail.com</string>
+    <string name="paypal">Donate: <a href="https://paypal.me/levisapps?locale.x=en_US">PayPal</a></string>
+    <string name="google_play">Other Apps: <a href="https://play.google.com/store/apps/developer?id=levisapps&amp;hl=en">Google Play</a></string>
+    <string name="github">Source Code: <a href="https://github.com/levis-apps/FileEncryption.git">GitHub</a></string>
 </resources>

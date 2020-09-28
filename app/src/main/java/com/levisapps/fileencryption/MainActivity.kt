@@ -6,6 +6,7 @@ import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
 import android.os.Environment
+import android.text.method.LinkMovementMethod
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -38,6 +39,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setSupportActionBar(findViewById(R.id.toolbar))
         toolbar.showOverflowMenu()
+
+        donate.movementMethod = LinkMovementMethod.getInstance()
+        googlePlay.movementMethod = LinkMovementMethod.getInstance()
+        github.movementMethod = LinkMovementMethod.getInstance()
 
         checkPermissions()
 
@@ -380,12 +385,8 @@ class MainActivity : AppCompatActivity() {
     private fun infoDialog() {
         AlertDialog.Builder(this@MainActivity)
             .setTitle("Info")
-            .setMessage(
-                "This app can encrypt any file with a password based encryption or create encrypted text files in which you can store passwords or other sensitive information.\n\n"
-                        + "The text files are encrypted with a unique, randomly generated AES 256-bit key that is used only locally on your device and the encrypted files can only be read using this app and only on this device.\n\n"
-                        + "For any questions or suggestions: levisappss@gmail.com"
-            )
-            .setPositiveButton("ok") { _, _ ->
+            .setMessage(getString(R.string.info_dialog))
+            .setPositiveButton("ok") {_, _ ->
             }
             .show()
     }
