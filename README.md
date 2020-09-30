@@ -15,7 +15,7 @@
 
 ## Support
 
-[Goole Play](https://play.google.com/store/apps/developer?id=levisapps&hl=en)
+[Google Play](https://play.google.com/store/apps/developer?id=levisapps&hl=en)
 
 ---
 
